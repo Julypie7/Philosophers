@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dinner.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/12 15:48:49 by ineimatu          #+#    #+#             */
+/*   Updated: 2024/11/18 16:53:06 by ineimatu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "inc/philo.h"
+
+int 	dinner_start(t_data *data)
+{
+	int i;
+	int fin;
+
+	i = -1;
+	fin = data->philo_num;
+	pthread_mutex_lock(&data->routine);
+	while (++i < data->num)
+	{
+		if (pthread_create(&data->philos[i].philo, NULL, &ft_dinner, &data->philos[i]))
+		{
+			exit = i;
+			data->end_simulation = 1;
+			break;
+		}
+	}
+	data->start_simul = get_right_time();
+	pthread_mutex_unlock(&data->routine);
+	return (exit);
+}
+
+void	to_print(t_philo *philo, char *act)
+{
+	pthread_mutex_lock(&philo->data->print);
+	if (!dead_check(philo->data)
+		printf(act, ft_get_moment_time(philo), philo->id, RESET);
+	pthread_mutex_unlock(&philo->data->print);
+}
+
+void	philo_eat(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->first_fork);
+	to_print(philo, ACT_FORK);
+	if (philo->first_fork != philo->second_fork)
+	{
+		pthread_mutex_lock(philo->second_fork)
+		to_print(philo, ACT_FORK);
+		pthread_mutex_lock(&philo->control);
+		philo->last_meal_time = ft_get_moment_time(philo);
+		philo->meals_count++;
+		pthread_mutex_unlock(&philo->control);
+		to_print(philo, ACT_EAT);
+		my_usleep(philo, philo->data->time_to_eat);
+		pthread_mutex_unlock(philo->second_fork);
+	}
+	else
+		my_usleep(philo, philo->data->time_to_eat);
+	pthrea_mutex_unlock(&philo->fist_fork);
+}
+
+void	ft_dinner(void *p)
+{
+	t_philo	*philo;
+
+	philo = p;
+	pthread_mutex_lock(&philo->data->routine);
+	pthread_mutex_unlock(&philo->data->routine);
+	if (philo->id % 2 != 0 && philo->data->philo_num > 1)
+		my_usleep(philo, (philo->data->time_to_eat));
+	while (!dead_check(philo->data))
+	{
+		philo_eat(philo);
+		if (philo->meals_count == philo->data->nbr_limit_meals)
+			break ;
+		to_print(philo, ACT_SLEEP);
+		my_usleep(philo, philo->data->time_to_sleep);
+		to_print(philo, ACT_THINK);
+	}
+}
