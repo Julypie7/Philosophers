@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:11:45 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/15 10:18:43 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:00:24 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ int syntax_err(char **av, int ac)
 			j++;
 		else if (av[i][0] == '-')
 			return (err_msg("Only positive numbers accepted", 0));
-		/*while (av[i][++j] != '\0' && av[i][++j] != ' ')
-			if ((!is_digit(av[i][j])) \
-			&& (av[i][j] != '+' || av[i][j] != '-'))
-				return (printf("heeey"), 0);*/
 		while (av[i][++j] != '\0')
 			if ((av[i][j] < '0' || av[i][j] > '9') \
 			&& (av[i][j] != '+' || av[i][j] != '-'))
@@ -70,7 +66,6 @@ int	init_data(t_data *data, char **av)
 		data->nbr_limit_meals = ft_atol(av[5]);
 	else
 		data->nbr_limit_meals = -1;
-	data->start_simul = get_right_time();
 	data->end_simul = 0;
 	return (0);
 }

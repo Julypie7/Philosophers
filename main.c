@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:39:14 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/18 17:03:05 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:37:29 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int main(int ac, char **av)
 		num_p = dinner_start(&data);
 		check_philo(&data, num_p);
 		//4) cleaning leaks
-		clean(&data);*/
 		return (0);		 
 	}
 	else
