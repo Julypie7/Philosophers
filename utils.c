@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:46:11 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/15 11:24:40 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:48:52 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int my_usleep(t_philo *philo, long sleep)
 	time = ft_get_moment_time(philo);
 	if (dead_check(philo->data))
 		return (1);
-	while (!dead_check(philo->data) && ft_get_moment_time(philo) - time < sleep))
+	while (!dead_check(philo->data) && ((ft_get_moment_time(philo) - time) < sleep))
 		usleep(1000);
 	return (0);
 }

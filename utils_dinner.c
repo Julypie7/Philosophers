@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:14:30 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/18 16:05:52 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:53:12 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	dead_check(t_data *data)
 int	printing(t_data *data, int i, int flag, char *act)
 {
 	pthread_mutex_lock(&data->print);
-	if (dead_check(data->philos[i]))
+	if (dead_check(data))
 	{
 		if (flag == DIE)
 		{

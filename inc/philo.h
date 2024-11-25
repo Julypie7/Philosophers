@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:12:35 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/18 16:55:19 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:00:13 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ typedef struct s_philo
 	long meals_count;
 	int full;
 	long last_meal_time; // time passed from last meal
-	t_fork *first_fork;
-	t_fork *second_fork;
-	t_mtx *control;
+	t_mtx first_fork;
+	t_mtx second_fork;
+	t_mtx control;
 	pthread_t philo; // a philo is a thread
 	struct s_data *data;
 } t_philo;
@@ -81,7 +81,6 @@ typedef struct s_data
 	long nbr_limit_meals;
 	long start_simul;
 	int end_simul;
-	t_fork *forks;
 	t_philo *philos;
 } t_data;
 
@@ -112,7 +111,6 @@ long	ft_get_moment_time(t_philo *philo);
 
 int	init_simul(t_data *data);
 void philo_init(t_data *data);
-static void fork_init(t_philo philo, t_fork *forks, int philo_pos);
 
 // utils dinner
 
@@ -125,6 +123,6 @@ int     printing(t_data *data, int i, int flag, char *act);
 int 	dinner_start(t_data *data);
 void	to_print(t_philo *philo, char *act);
 void	philo_eat(t_philo *philo);
-void	ft_dinner(void *p);
+void	*ft_dinner(void *p);
 
 #endif
