@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:14:30 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/25 12:53:12 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:54:51 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,30 @@ int	printing(t_data *data, int i, int flag, char *act)
 	return (0);
 }
 
-void	ft_bzero(void *s, size_t n)
+long	ft_get_moment_time(t_philo *philo)
 {
-	unsigned char	*string;
-	size_t			i;
-	unsigned char	zero;
+	return (get_right_time() - philo->data->start_simul);
+}
 
-	zero = '\0';
-	string = (unsigned char *)s;
-	i = 0;
-	if (n != 0)
-	{
-		while (i < n)
-		{
-			string[i] = zero;
-			i++;
-		}
-	}
+long	get_right_time(void)
+{
+	struct timeval	tv;
+	unsigned int		current_time;
+
+	gettimeofday(&tv, NULL);
+	current_time = (unsigned int)(tv.tv_sec * 1000) + (tv.tv_usec * 0.001);
+	return (current_time);
+}
+
+int my_usleep(t_philo *philo, long sleep)
+{
+	long	time;
+
+	time = ft_get_moment_time(philo);
+	if (dead_check(philo->data))
+		return (1);
+	while (!dead_check(philo->data) && ((ft_get_moment_time(philo) - time) < sleep))
+		usleep(1000);
+	printf("philo id = %d",philo->id);
+	return (0);
 }

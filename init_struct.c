@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:51:26 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/25 12:49:36 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:42:18 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,23 @@ static void fork_init(t_philo philo, t_fork *forks, int philo_pos)
 void philo_init(t_data *data)
 {
 	int i;
-	t_philo *philo;
+//	t_philo *philo;
 
 	i = 0;
+	printf(" MYY philo num :%ld\n", data->philo_num);
 	while (i < data->philo_num)
 	{
-		philo = data->philos;
-		philo[i].id = i;
-		philo[i].full = 0;
-		philo[i].meals_count = 0;
-		philo[i].data = data;
+		//philo = data->philos;
+		data->philos[i].id = i + 1;
+		data->philos[i].full = 0;
+		data->philos[i].meals_count = 0;
+		data->philos[i].data = data;
 		if (i > 0)
-			philo[i].second_fork = philo[i - 1].first_fork;
+			data->philos[i].second_fork = &data->philos[i - 1].first_fork;
+		printf("i init philo %d\n", data->philos[i].id);
 		i++;
 	}
-	philo[0].second_fork = philo[data->philo_num - 1].first_fork;
+	data->philos[0].second_fork = &data->philos[data->philo_num - 1].first_fork;
 }
 
 int	init_simul(t_data *data)
@@ -52,12 +54,15 @@ int	init_simul(t_data *data)
 	int	i;
 
 	i = -1;
+	printf(" MYY philo num :%ld\n", data->philo_num);
 	while (++i < data->philo_num)
 	{
 		if (pthread_mutex_init(&data->philos[i].first_fork, NULL))
 			return(err_msg("Error init", 1));
 		if (pthread_mutex_init(&data->philos[i].control, NULL))
 			return(err_msg("Error mutex init", 1));
+		printf(" WE INIT FIRST_FORK\n");
+		
 	}
 	philo_init(data);
 	if (pthread_mutex_init(&data->routine, NULL))

@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:12:35 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/25 13:00:13 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:08:30 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_philo
 	int full;
 	long last_meal_time; // time passed from last meal
 	t_mtx first_fork;
-	t_mtx second_fork;
+	t_mtx *second_fork;
 	t_mtx control;
 	pthread_t philo; // a philo is a thread
 	struct s_data *data;

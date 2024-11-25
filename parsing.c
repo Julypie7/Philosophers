@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:11:45 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/20 15:00:24 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:55:26 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,4 @@ int parse_input(t_data *data, char **av, int ac)
 	if (init_data(data, av))
 		return (1);
 	return (0);
-}
-
-long	ft_get_moment_time(t_philo *philo)
-{
-	return (get_right_time() - philo->data->start_simul);
 }
