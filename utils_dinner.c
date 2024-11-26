@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:14:30 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/25 16:28:36 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:34:41 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,24 @@ long	get_right_time(void)
 
 int my_usleep(t_philo *philo, long sleep)
 {
+	long time;
+
+	time = get_right_time();
+	while (dead_check(philo->data) && ((get_right_time() - time) < sleep))
+		usleep(500);
+	return(0);
+}
+
+/*
+int my_usleep(t_philo *philo, long sleep)
+{
 	long	time;
 
 	time = ft_get_moment_time(philo);
-	if (dead_check(philo->data))
+	if (!dead_check(philo->data))
 		return (1);
-	while (!dead_check(philo->data) && ((ft_get_moment_time(philo) - time) < sleep))
+	while (dead_check(philo->data) && ((ft_get_moment_time(philo) - time) < sleep))
 		usleep(1000);
 	printf("philo id = %d",philo->id);
 	return (0);
-}
+}*/

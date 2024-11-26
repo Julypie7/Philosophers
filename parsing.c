@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:11:45 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/25 15:55:26 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:13:26 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int	init_data(t_data *data, char **av)
 	data->philos = malloc(sizeof(t_philo) * data->philo_num);
 	if (!data->philos)
 		return (err_msg("Alloc error", 1));
-	data->time_to_die = ft_atol(av[2]) * 1000;
-	data->time_to_eat = ft_atol(av[3]) * 1000;
-	data->time_to_sleep = ft_atol(av[4]) * 1000;
+	data->time_to_die = ft_atol(av[2]);
+	data->time_to_eat = ft_atol(av[3]);
+	data->time_to_sleep = ft_atol(av[4]);
 	if (av[5])
 		data->nbr_limit_meals = ft_atol(av[5]);
 	else

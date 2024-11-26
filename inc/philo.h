@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:12:35 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/25 14:08:30 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:55:45 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 # define RED "\x1B[31m"
 # define WHITE "\x1b[37m"
 
-# define ACT_FORK "[%u] %lld took a fork%s\n"
+#define	ACT_L_FORK "\x1B[36m[%u] %lld took left fork%s\n"
+# define ACT_R_FORK "\x1B[36m[%u] %lld took right fork%s\n"
 # define ACT_EAT "\x1B[32m[%u] %lld is eating%s\n"
 # define ACT_SLEEP "\x1B[34m[%u] %lld is sleeping%s\n"
 # define ACT_THINK "\x1B[37m[%u] %lld is thinking%s\n"
@@ -103,14 +104,13 @@ long	get_right_time(void);
 int syntax_err(char **av, int ac);
 int limits_err(char **av);
 int init_data(t_data *data, char **av);
-void philo_init(t_data *data);
 int parse_input(t_data *data, char **av, int ac);
 long	ft_get_moment_time(t_philo *philo);
 
 // init struct
 
 int	init_simul(t_data *data);
-void philo_init(t_data *data);
+int philo_init(t_data *data);
 
 // utils dinner
 

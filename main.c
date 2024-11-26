@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:39:14 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/25 16:17:45 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:16:10 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_philo(t_data *data, int num_p)
 	int flag;
 
 	flag = 0;
-	while (!dead_check(data) && flag != data->philo_num)
+	while (dead_check(data) && flag != data->philo_num)
 	{
 		i = -1;
 		flag = 0;
@@ -48,10 +48,9 @@ void	check_philo(t_data *data, int num_p)
 			pthread_mutex_lock(&data->philos[i].control);
 			if (data->philos[i].meals_count == data->nbr_limit_meals)
 				flag++;
-			if (ft_get_moment_time(&data->philos[i]) - data->philos[i].last_meal_time >= data->time_to_die && data->philos[i].meals_count != data->nbr_limit_meals)
+			if (ft_get_moment_time(data->philos) - data->philos[i].last_meal_time >= data->time_to_die && data->philos[i].meals_count != data->nbr_limit_meals)
 				printing(data, i, DIE, ACT_DIE);
-			pthread_mutex_unlock(&data->philos->control);
-			i++;
+			pthread_mutex_unlock(&data->philos[i].control);
 		}
 	}
 	to_clean(data, num_p);
@@ -89,14 +88,15 @@ int main(int ac, char **av)
 		//2) creating the data
 		if (init_simul(data) == 1)
 			return (err_msg("Allocation failed", 2));
-		print_struct(data);
+		//print_struct(data);
 		//3)
 		printf("data pointer: %p\n", data); 	
 		num_p = dinner_start(data);
-		print_struct(data);
+		//print_struct(data);
 		check_philo(data, num_p);
+		free(data);
 		//4) cleaning leaks
-		return (num_p);		 
+		return (0);		 
 	}
 	else
 		return (err_msg("Invalid number of arguments", 2));
