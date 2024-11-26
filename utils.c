@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:46:11 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/25 15:55:07 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:49:31 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	err_msg(char *str, int ex_num)
 	return (ex_num);
 }
 
-int is_digit(char c)
+int	is_digit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
@@ -27,9 +27,9 @@ int is_digit(char c)
 
 long	ft_atol(char *str)
 {
-	long num;
-	int i;
-	
+	long	num;
+	int		i;
+
 	i = 0;
 	num = 0;
 	while (is_digit(str[i]))

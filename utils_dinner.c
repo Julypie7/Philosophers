@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:14:30 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/26 15:34:41 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:48:24 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	dead_check(t_data *data)
 {
-	int dead;
+	int	dead;
 
 	dead = 1;
 	pthread_mutex_lock(&data->check_dead);
@@ -35,7 +35,8 @@ int	printing(t_data *data, int i, int flag, char *act)
 			data->end_simul = 1;
 			pthread_mutex_unlock(&data->check_dead);
 		}
-		printf(act, ft_get_moment_time(data->philos), data->philos[i].id, RESET);
+		printf(act, ft_get_moment_time(data->philos), \
+				data->philos[i].id, RESET);
 	}
 	pthread_mutex_unlock(&data->print);
 	return (0);
@@ -49,33 +50,19 @@ long	ft_get_moment_time(t_philo *philo)
 long	get_right_time(void)
 {
 	struct timeval	tv;
-	unsigned int		current_time;
+	unsigned int	current_time;
 
 	gettimeofday(&tv, NULL);
 	current_time = (unsigned int)(tv.tv_sec * 1000) + (tv.tv_usec * 0.001);
 	return (current_time);
 }
 
-int my_usleep(t_philo *philo, long sleep)
+int	my_usleep(t_philo *philo, long sleep)
 {
-	long time;
+	long	time;
 
 	time = get_right_time();
 	while (dead_check(philo->data) && ((get_right_time() - time) < sleep))
 		usleep(500);
-	return(0);
-}
-
-/*
-int my_usleep(t_philo *philo, long sleep)
-{
-	long	time;
-
-	time = ft_get_moment_time(philo);
-	if (!dead_check(philo->data))
-		return (1);
-	while (dead_check(philo->data) && ((ft_get_moment_time(philo) - time) < sleep))
-		usleep(1000);
-	printf("philo id = %d",philo->id);
 	return (0);
-}*/
+}

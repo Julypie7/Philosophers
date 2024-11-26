@@ -6,16 +6,16 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:11:45 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/26 16:13:26 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:50:30 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/philo.h"
 
-int syntax_err(char **av, int ac)
+int	syntax_err(char **av, int ac)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (++i < ac)
@@ -28,17 +28,17 @@ int syntax_err(char **av, int ac)
 		while (av[i][++j] != '\0')
 			if ((av[i][j] < '0' || av[i][j] > '9') \
 			&& (av[i][j] != '+' || av[i][j] != '-'))
-				return ( 0);
+				return (0);
 		if ((!*av[i]) || (j == 1 && (av[i][0] == '+' || av[i][0] == '-')))
 			return (0);
 	}
 	return (1);
 }
 
-int limits_err(char **av)
+int	limits_err(char **av)
 {
-	int len;
-	int i;
+	int	len;
+	int	i;
 
 	i = 0;
 	while (av && av[i])
@@ -70,16 +70,16 @@ int	init_data(t_data *data, char **av)
 	return (0);
 }
 
-int parse_input(t_data *data, char **av, int ac)
+int	parse_input(t_data *data, char **av, int ac)
 {
-	int i;
-	int num;
+	int	i;
+	int	num;
 
 	i = 1;
 	if (!syntax_err(av, ac))
 		return (1);
 	if (!limits_err(av))
-		return (1);	
+		return (1);
 	while (i < ac)
 	{
 		num = ft_atol(av[i]);

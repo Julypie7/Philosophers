@@ -6,27 +6,28 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:48:49 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/26 17:17:04 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:40:09 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "inc/philo.h"
+#include "inc/philo.h"
 
-int 	dinner_start(t_data *data)
+int	dinner_start(t_data *data)
 {
-	int i;
-	int fin;
+	int	i;
+	int	fin;
 
 	i = -1;
 	fin = data->philo_num;
 	pthread_mutex_lock(&data->routine);
 	while (++i < data->philo_num)
 	{
-		if (pthread_create(&data->philos[i].philo, NULL, ft_dinner, &data->philos[i]))
+		if (pthread_create(&data->philos[i].philo, NULL, ft_dinner, \
+					&data->philos[i]))
 		{
 			fin = i;
 			data->end_simul = 1;
-			break;
+			break ;
 		}
 		printf("we create thread\n");
 	}
@@ -60,13 +61,10 @@ void	philo_eat(t_philo *philo)
 		philo->meals_count++;
 		printf("meals_count %ld\n", philo->meals_count);
 		pthread_mutex_unlock(&philo->control);
-		//to_print(philo, ACT_EAT);
-		//usleep(philo->data->time_to_eat);
 		my_usleep(philo, philo->data->time_to_eat);
 		pthread_mutex_unlock(philo->second_fork);
 	}
 	else
-		//usleep(philo->data->time_to_die);
 		my_usleep(philo, philo->data->time_to_eat);
 	pthread_mutex_unlock(&philo->first_fork);
 }
@@ -79,16 +77,15 @@ void	*ft_dinner(void *p)
 	pthread_mutex_lock(&philo->data->routine);
 	pthread_mutex_unlock(&philo->data->routine);
 	if (philo->id % 2 != 0 && dead_check(philo->data))
-		//usleep((philo->data->time_to_eat - 1) * 1000);
 		my_usleep(philo, (philo->data->time_to_eat));
-	while (dead_check(philo->data) && philo->meals_count != philo->data->nbr_limit_meals)
+	while (dead_check(philo->data) \
+			&& philo->meals_count != philo->data->nbr_limit_meals)
 	{
 		printf("enter\n");
 		philo_eat(philo);
 		if (philo->meals_count != philo->data->nbr_limit_meals)
 		{
 			to_print(philo, ACT_SLEEP);
-			//usleep(philo->data->time_to_sleep);
 			my_usleep(philo, philo->data->time_to_sleep);
 			to_print(philo, ACT_THINK);
 		}
