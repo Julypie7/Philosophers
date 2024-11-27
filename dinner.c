@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:48:49 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/26 17:40:09 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:13:48 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	dinner_start(t_data *data)
 			data->end_simul = 1;
 			break ;
 		}
-		printf("we create thread\n");
 	}
 	data->start_simul = get_right_time();
 	pthread_mutex_unlock(&data->routine);
@@ -49,7 +48,6 @@ void	philo_eat(t_philo *philo)
 	if (!dead_check(philo->data))
 		return ;
 	pthread_mutex_lock(&philo->first_fork);
-	printf("eating %d\n", philo->id);
 	to_print(philo, ACT_R_FORK);
 	if (&philo->first_fork != philo->second_fork)
 	{
@@ -59,7 +57,6 @@ void	philo_eat(t_philo *philo)
 		pthread_mutex_lock(&philo->control);
 		philo->last_meal_time = ft_get_moment_time(philo);
 		philo->meals_count++;
-		printf("meals_count %ld\n", philo->meals_count);
 		pthread_mutex_unlock(&philo->control);
 		my_usleep(philo, philo->data->time_to_eat);
 		pthread_mutex_unlock(philo->second_fork);
@@ -81,7 +78,6 @@ void	*ft_dinner(void *p)
 	while (dead_check(philo->data) \
 			&& philo->meals_count != philo->data->nbr_limit_meals)
 	{
-		printf("enter\n");
 		philo_eat(philo);
 		if (philo->meals_count != philo->data->nbr_limit_meals)
 		{

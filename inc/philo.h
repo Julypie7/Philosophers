@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:12:35 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/26 17:56:45 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:15:12 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,23 @@
 
 //colors
 
-# define BLUE "\x1B[34m"
+# define BLUE "\033[38;5;45m"
 # define GREEN "\x1B[32m"
 # define RESET "\x1B[0m"
-# define CYAN "\x1B[36m"
-# define MAGENTA "\x1B[35m"
-# define YELLOW "\x1B[33m"
-# define RED "\x1B[31m"
+# define SKY_BL "\033[38;5;45m"
+# define PURPLE "\033[38;5;92m"
+# define RED "\033[91m"
 # define WHITE "\x1b[37m"
+# define GOLD "\033[38;5;220m"
+# define TEAL "\033[38;5;27m"
 
-# define ACT_L_FORK "\x1B[36m[%u] %lld took left fork%s\n"
-# define ACT_R_FORK "\x1B[36m[%u] %lld took right fork%s\n"
-# define ACT_EAT "\x1B[32m[%u] %lld is eating%s\n"
-# define ACT_SLEEP "\x1B[34m[%u] %lld is sleeping%s\n"
-# define ACT_THINK "\x1B[37m[%u] %lld is thinking%s\n"
-# define ACT_DIE "\x1B[31m[%u] %lld has died%s\n"
+# define ACT_L_FORK "🥢 \033[38;5;45m[%u] %lld took left chop stick%s\n"
+# define ACT_R_FORK "🥢 \033[38;5;117m[%u] %lld took right chop stick%s\n"
+# define ACT_EAT "🍜 \x1B[32m[%u] %lld is eating%s\n"
+# define ACT_SLEEP "😴 \033[38;5;92m[%u] %lld is sleeping%s\n"
+# define ACT_THINK "💭 \033[38;5;220m[%u] %lld is thinking%s\n"
+# define ACT_DIE "⚰️  \033[91m[%u] %lld has died%s\n"
+
 
 typedef pthread_mutex_t	t_mtx;
 

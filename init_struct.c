@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:51:26 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/26 17:51:57 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:13:31 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	philo_init(t_data *data)
 	int	i;
 
 	i = 0;
-	printf(" MYY philo num :%ld\n", data->philo_num);
 	while (i < data->philo_num)
 	{
 		data->philos[i].id = i + 1;
@@ -30,7 +29,6 @@ int	philo_init(t_data *data)
 			return (err_msg("Error mutex init", 1));
 		if (i > 0)
 			data->philos[i].second_fork = &data->philos[i - 1].first_fork;
-		printf("i init philo %d\n", data->philos[i].id);
 		i++;
 	}
 	return (0);
@@ -38,7 +36,6 @@ int	philo_init(t_data *data)
 
 int	init_simul(t_data *data)
 {
-	printf(" MYY philo num :%ld\n", data->philo_num);
 	if (philo_init(data) == 1)
 		return (1);
 	data->philos[0].second_fork = &data->philos[data->philo_num - 1].first_fork;
