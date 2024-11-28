@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:39:14 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/26 17:44:25 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:31:52 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,19 @@ int	main(int ac, char **av)
 	{
 		data = malloc(sizeof(t_data) * 1);
 		if (!data)
-			return (err_msg("Malloc of data\n", 2));
+			return (err_msg("Malloc of data\n", 2, data));
 		if (parse_input(data, av, ac) == 1)
-			return (err_msg("Invalid arguments", 2));
+			return (err_msg("Invalid arguments", 2, data));
 		if (init_simul(data) == 1)
-			return (err_msg("Allocation failed", 2));
+			return (err_msg("Allocation failed", 2, data));
 		num_p = dinner_start(data);
 		check_philo(data, num_p);
 		free(data);
 		return (0);
 	}
 	else
-		return (err_msg("Invalid number of arguments", 2));
+	{	
+		printf(RED"Invalid number of arguments\n"RESET);
+		return (2);
+	}
 }

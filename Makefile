@@ -6,7 +6,7 @@
 #    By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/04 09:40:27 by ineimatu          #+#    #+#              #
-#    Updated: 2024/11/27 13:52:36 by ineimatu         ###   ########.fr        #
+#    Updated: 2024/11/28 13:47:08 by ineimatu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC = main.c utils.c parsing.c init_struct.c utils_dinner.c dinner.c
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror #-fsanitize=address #-pthread
+FLAGS = -Wall -Wextra -Werror #-fsanitize=thread
 
 HEADER = inc/philo.h
 

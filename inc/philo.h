@@ -6,7 +6,7 @@
 /*   By: ineimatu <ineimatu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:12:35 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/11/27 14:15:12 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:54:45 by ineimatu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 # define GOLD "\033[38;5;220m"
 # define TEAL "\033[38;5;27m"
 
-# define ACT_L_FORK "🥢 \033[38;5;45m[%u] %lld took left chop stick%s\n"
-# define ACT_R_FORK "🥢 \033[38;5;117m[%u] %lld took right chop stick%s\n"
+# define ACT_L_FORK "🥢 \033[38;5;45m[%u] %lld has taken a fork%s\n"
+# define ACT_R_FORK "🥢 \033[38;5;117m[%u] %lld has taken a fork%s\n"
 # define ACT_EAT "🍜 \x1B[32m[%u] %lld is eating%s\n"
 # define ACT_SLEEP "😴 \033[38;5;92m[%u] %lld is sleeping%s\n"
 # define ACT_THINK "💭 \033[38;5;220m[%u] %lld is thinking%s\n"
-# define ACT_DIE "⚰️  \033[91m[%u] %lld has died%s\n"
+# define ACT_DIE "⚰️  \033[91m[%u] %lld died%s\n"
 
 
 typedef pthread_mutex_t	t_mtx;
@@ -95,7 +95,7 @@ void	to_clean(t_data *data, int num_p);
 
 //utils
 
-int		err_msg(char *str, int ex_num);
+int		err_msg(char *str, int ex_num, t_data *data);
 int		is_digit(char c);
 long	ft_atol(char *str);
 int		my_usleep(t_philo *philo, long sleep);
