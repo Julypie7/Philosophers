@@ -1,4 +1,4 @@
-# Common Core42 - Philosophers
+# Common Core 42 - Philosophers
 Philosophers is a 42 school project designed around Edsger Dijkstra's famous dining philosophers problem. For this project, we must learn about concurrent programming. For the project's mandatory part, we must find a solution to the problem using only threads and mutexes.
 ![Dining_philosophers4-left-release](https://github.com/user-attachments/assets/03076686-044d-4aaa-87e3-c8cbaaf5f783)
 ### General Description
